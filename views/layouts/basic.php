@@ -102,7 +102,7 @@ $this->beginPage();
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']],
                 [
-                    'label' => 'ID1',
+                    'label' => 'ID=1',
                     'url' => Yii::$app->urlManager->createUrl(['main/user','id'=>1])
                 ],
 
