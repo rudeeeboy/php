@@ -101,7 +101,6 @@ $this->beginPage();
                         О проекте <span class="glyphicon glyphicon-question-sign"></span>
                     </a>
                 </li>',
-<<<<<<< HEAD
                 Yii::$app->user->isGuest ?
                     ['label' => 'Login', 'url' => ['/site/login']] :
                     ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -111,33 +110,6 @@ $this->beginPage();
                     'label' => 'ID=1',
                     'url' => Yii::$app->urlManager->createUrl(['main/user','id'=>1])
                 ],
-=======
-                [
-                    'label' => 'Настройки',
-                    'url' => '#',
-                    'template' => '<a href="{url}" class="dropdown-toggle" data-toggle="dropdown">{label} <i class="icon-angle-down"></i></a>',
-                    'visible' => !Yii::$app->user->isGuest,
-                    'items' => [
-                        [
-                            'label' => 'Edit profile',
-                            'url' => ['/user/update']
-                        ],
-                        [
-                            'label' => 'Change email',
-                            'url' => ['/user/email']
-                        ],
-                        [
-                            'label' => 'Change password',
-                            'url' => ['/user/password']
-                        ]
-                    ]
-                ],
-                Yii::$app->user->isGuest ?
-                    ['label' => 'Login', 'url' => ['/main/login']] :
-                    ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                        'url' => ['/main/logout'],
-                        'linkOptions' => ['data-method' => 'post']],
->>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
 
             ],
             'encodeLabels' => false,
