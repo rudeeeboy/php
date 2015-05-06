@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+<<<<<<< HEAD
 use Yii;
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -28,6 +29,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
+=======
+use yii\db\ActiveRecord;
+use yii\helpers\Security;
+
+class User extends ActiveRecord implements \yii\web\IdentityInterface
+{
+    public static function tableName()
+    {
+        return 'users';
+    }
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     public function attributeLabels()
     {
         return [
@@ -35,6 +47,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Username',
             'password' => 'Password',
             'email' => 'Email',
+<<<<<<< HEAD
             'auth_key' => 'Auth Key',
             'password_reset_token' => 'Password Reset Token',
         ];
@@ -43,19 +56,27 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
+=======
+        ];
+    }
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     public static function findIdentity($id)
     {
         return static::findOne($id);
     }
+<<<<<<< HEAD
 
     /**
      * @inheritdoc
      */
     /* modified */
+=======
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return static::findOne(['access_token' => $token]);
     }
+<<<<<<< HEAD
 
     /* removed
         public static function findIdentityByAccessToken($token)
@@ -106,18 +127,28 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
+=======
+    public function getId()
+    {
+        return $this->id;
+    }
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     public function getAuthKey()
     {
         return $this->auth_key;
     }
+<<<<<<< HEAD
 
     /**
      * @inheritdoc
      */
+=======
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
     }
+<<<<<<< HEAD
 
     /**
      * Validates password
@@ -125,11 +156,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      * @param  string  $password password to validate
      * @return boolean if password provided is valid for current user
      */
+=======
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     public function validatePassword($password)
     {
         return $this->password === $password;
     }
 
+<<<<<<< HEAD
     /**
      * Generates password hash from password and sets it to the model
      *
@@ -164,4 +198,20 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         $this->password_reset_token = null;
     }
     /** EXTENSION MOVIE **/
+=======
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    public function password($password)
+    {
+        $this->setPassword($password);
+        return $this->save(false);
+    }
+
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
 }

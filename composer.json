@@ -1,6 +1,10 @@
 {
     "name": "rudeeeboy/php",
+<<<<<<< HEAD
     "description": "Our Yii2 Application",
+=======
+    "description": "yii2 app",
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     "keywords": ["yii2", "framework", "basic", "application template"],
     "homepage": "http://www.phpnt.com/",
     "type": "project",

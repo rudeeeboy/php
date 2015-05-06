@@ -2,6 +2,10 @@
 namespace app\controllers;
 
 use Yii;
+<<<<<<< HEAD
+=======
+use app\models\LoginForm;
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
 
 class MainController extends \yii\web\Controller
 {
@@ -28,6 +32,7 @@ class MainController extends \yii\web\Controller
             ]
         );
     }
+<<<<<<< HEAD
     public function actionUser($id)
     {
         return $this->render(
@@ -39,5 +44,28 @@ class MainController extends \yii\web\Controller
         return $this->render(
             'msgs'
         );
+=======
+    public function actionLogin()
+    {
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goHome();
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+>>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     }
 }
