@@ -48,7 +48,7 @@ class MsgsController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->render('@app/views/main/msgs/view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -65,7 +65,7 @@ class MsgsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->render('@app/views/main/msgs/create', [
                 'model' => $model,
             ]);
         }

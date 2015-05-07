@@ -1,5 +1,6 @@
 <?php
 use app\assets\AppAsset;
+use yii\helpers\Url;
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
 use yii\bootstrap\Modal;
@@ -22,13 +23,8 @@ $this->beginPage();
         <meta charset="<?= Yii::$app->charset ?>">
         <?php $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1']); ?>
         <title><?= Yii::$app->name ?></title>
-<<<<<<< HEAD
         <?echo Html::csrfMetaTags();?>
         <?php $this->head() ?>
-=======
-        <?php $this->head() ?>
-        <?= Html::csrfMetaTags() ?>
->>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
     </head>
     <body>
     <?php $this->beginBody(); ?>
@@ -101,11 +97,23 @@ $this->beginPage();
                         О проекте <span class="glyphicon glyphicon-question-sign"></span>
                     </a>
                 </li>',
-                Yii::$app->user->isGuest ?
+                /*Yii::$app->user->isGuest ?
                     ['label' => 'Login', 'url' => ['/site/login']] :
                     ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                         'url' => ['/site/logout'],
-                        'linkOptions' => ['data-method' => 'post']],
+                        'linkOptions' => ['data-method' => 'post']],*/
+                Yii::$app->user->isGuest ?
+                    ['label' => 'Login', 'url' => ['/site/login']] :
+                    '<li>
+                        <a href='.Url::toRoute(['user', 'id' => Yii::$app->user->identity->id]).'>'
+                           .Yii::$app->user->identity->username
+                        .'</a>
+                    </li>
+                    <li>
+                        <a href="'.Url::toRoute(['site/logout']).'" data-method="post">
+                            Logout
+                        </a>
+                    </li>',
                 [
                     'label' => 'ID=1',
                     'url' => Yii::$app->urlManager->createUrl(['main/user','id'=>1])
@@ -137,10 +145,6 @@ $this->beginPage();
             <span class="badge">
                 <span class="glyphicon glyphicon-copyright-mark"></span> phpNT <?= date('Y') ?>
             </span>
-<<<<<<< HEAD
-=======
-
->>>>>>> 4e2620c12da0a6fe3a4376af35b09e23e5476899
         </div>
     </footer>
 

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 ?>
 <?
-
-  echo Html::a('Сообщения', ['/main/msgs'], ['class'=>'btn btn-primary']);
+    echo Yii::$app->user->identity->username;
+    echo Html::a('Сообщения', ['/msgs'], ['class'=>'btn btn-primary']);
 
 ?>
