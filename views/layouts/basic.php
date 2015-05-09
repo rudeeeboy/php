@@ -41,7 +41,8 @@ $this->beginPage();
                 'innerContainerOptions' => [
                     'class' => 'container'
                 ],
-                'brandLabel' => '<img src="img/brand.gif"/>',
+                //'brandLabel' => '<img src="img/brand.gif"/>',
+                'brandLabel' => 'yii2 app',
                 'brandUrl' => [
                     'main/index'
                 ],
@@ -105,7 +106,7 @@ $this->beginPage();
                 Yii::$app->user->isGuest ?
                     ['label' => 'Login', 'url' => ['/site/login']] :
                     '<li>
-                        <a href='.Url::toRoute(['user', 'id' => Yii::$app->user->identity->id]).'>'
+                        <a href='.Url::toRoute(['main/user', 'id' => Yii::$app->user->identity->id]).'>'
                            .Yii::$app->user->identity->username
                         .'</a>
                     </li>
@@ -118,6 +119,10 @@ $this->beginPage();
                     'label' => 'ID=1',
                     'url' => Yii::$app->urlManager->createUrl(['main/user','id'=>1])
                 ],
+                [
+                    'label' => 'SignUp',
+                    'url' => Yii::$app->urlManager->createUrl(['site/signup'])
+                ],
 
             ],
             'encodeLabels' => false,
@@ -127,10 +132,10 @@ $this->beginPage();
         ]);
 
         Modal::begin([
-            'header' => '<h2>phpNT</h2>',
+            'header' => '<h2>php</h2>',
             'id' => 'modal'
         ]);
-        echo 'Проект для продвинутых PHP разработчиков.';
+        echo '123.';
         Modal::end();
 
         NavBar::end();
@@ -143,7 +148,7 @@ $this->beginPage();
     <footer class="footer">
         <div class="container">
             <span class="badge">
-                <span class="glyphicon glyphicon-copyright-mark"></span> phpNT <?= date('Y') ?>
+                <span class="glyphicon glyphicon-copyright-mark"></span> <?= date('Y') ?>
             </span>
         </div>
     </footer>

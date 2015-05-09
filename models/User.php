@@ -2,6 +2,21 @@
 
 namespace app\models;
 use Yii;
+use yii\behaviors\TimestampBehavior;
+/**
+ * User model
+ *
+ * @property integer $id
+ * @property string $username
+ * @property string $password_hash
+ * @property string $password_reset_token
+ * @property string $email
+ * @property string $auth_key
+ * @property integer $status
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property string $password write-only password
+ */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
@@ -24,7 +39,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['password_reset_token'], 'string', 'max' => 255]
         ];
     }
-
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -114,7 +137,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->getAuthKey() === $authKey;
+        return $this->auth_key;
     }
 
     /**
@@ -125,7 +148,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
     /**
      * Generates password hash from password and sets it to the model
@@ -134,7 +157,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password_hash = Security::generatePasswordHash($password);
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
     /**
@@ -142,7 +165,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Security::generateRandomKey();
+        $this->auth_key = Yii::$app->security->generateRandomKey();
     }
 
     /**
@@ -150,7 +173,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->password_reset_token = Security::generateRandomKey() . '_' . time();
+        $this->password_reset_token = Yii::$app->security->generateRandomKey() . '_' . time();
     }
 
     /**

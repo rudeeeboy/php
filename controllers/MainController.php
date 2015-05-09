@@ -2,6 +2,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\SignUpForm;
 
 class MainController extends \yii\web\Controller
 {
